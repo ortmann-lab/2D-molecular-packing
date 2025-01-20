@@ -1,0 +1,57 @@
+Geometry = GenFormat {
+ <<< "DFTB.gen"
+}
+Driver = GeometryOptimisation {
+  MovedAtoms = 1:-1
+  MaxSteps = 400
+    Convergence = {
+    GradElem = 1.0000000000000000E-003
+}
+ LatticeOpt = Yes
+ FixAngles = Yes
+ FixLengths = {No No Yes}
+}
+Hamiltonian = DFTB {
+  SCC = YES
+  SlaterKosterFiles = Type2FileNames {
+    Prefix = "/home/algu607f/opt/dftb_23.1/3ob-3-1/"
+    Separator = "-"
+    Suffix = ".skf"
+    LowerCaseTypeName = No
+  }
+  Dispersion = DftD3 {
+    Damping = BeckeJohnson {
+      a1 = 0.571900000000000
+      a2 = 3.60170000000000
+    }
+    s6 = 1.00000000000000
+    s8 = 0.588300000000000
+    cutoff = 94.8683298050514
+    cutoffcn = 40.0000000000000
+    threebody = No
+    hhrepulsion = No
+  }
+  ThirdOrderFull = Yes
+  HCorrection = Damping {
+   Exponent = 4.2
+   }
+  HubbardDerivs = {
+    C = -0.1492
+    H = -0.1857
+    N = -0.1535 
+    S = -0.1100
+  }
+  MaxAngularMomentum = {
+   C = "p"
+   H = "s"
+   N = "p"
+   S = "d"
+  }
+  KPointsAndWeights = SupercellFolding {
+   1  0  0
+   0  1  0
+   0  0  1
+   0  0  0
+  }
+}
+
